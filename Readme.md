@@ -37,6 +37,9 @@ Root data name, default to result, assume that we have request only 1. For examp
 }
 ```
 
+#### `getAll`
+If provided, get `data` return from graphql instead of `data.result`. Useful when query multiple field
+
 #### `renderLoading`: () => Component | string
 Custom render loading state
 

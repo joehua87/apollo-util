@@ -9,6 +9,7 @@ const Loader = () => (
 function ApolloDataWrapper({
   data,
   dataField = 'result',
+  getAll = false,
   renderLoading = () => (<Loader />),
   renderGlobalError = () => (<div>Global Error Occur</div>),
   renderError = () => (<div>Query Error Occur</div>),
@@ -20,6 +21,7 @@ function ApolloDataWrapper({
     loading: boolean,
   },
   dataField?: string,
+  getAll?: boolean,
   renderLoading?: () => any,
   renderGlobalError?: (error: any) => any,
   renderError?: (error: any) => any,
@@ -34,7 +36,7 @@ function ApolloDataWrapper({
     return renderLoading()
   }
 
-  const result = data[dataField]
+  const result = getAll ? data : data[dataField]
 
   if (result.error) {
     return renderError(result.error)
