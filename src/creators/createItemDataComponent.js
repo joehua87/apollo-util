@@ -4,7 +4,15 @@ import React from 'react'
 import { graphql } from 'react-apollo'
 import ApolloDataWrapper from 'components/ApolloDataWrapper'
 
-function createItemDataComponent(query: any, idField: string = '_id') {
+function createItemDataComponent({
+  query,
+  idField = '_id',
+  client,
+}: {
+  query: any,
+  idField: string,
+  client?: any,
+}) {
   const connectQuery = graphql(query, {
     options: (props) => {
       const id = props.variables && props.variables[idField]
@@ -12,6 +20,7 @@ function createItemDataComponent(query: any, idField: string = '_id') {
         variables: {
           [idField]: id,
         },
+        client,
       }
     },
   })
